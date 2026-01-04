@@ -345,7 +345,7 @@ function mostrarFotos(){
   fotos.innerHTML = videos.innerHTML = "";
   for(let i=1;i<=6;i++){
     const img=document.createElement("img");
-    img.src=`fotos/foto${i}.jpg`;
+    img.src=`fotos/foto${i}.jpeg`;
     img.onclick=()=>abrirModal(img.src,"img");
     fotos.appendChild(img);
   }
