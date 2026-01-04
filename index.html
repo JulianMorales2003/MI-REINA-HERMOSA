@@ -79,7 +79,7 @@ body {
 
 .pregunta-box {
   background: white;
-  padding: 30px;
+  padding: 30px 25px 20px;
   border-radius: 20px;
   text-align: center;
   max-width: 300px;
@@ -109,6 +109,19 @@ body {
 .nube:hover {
   background: #ffe3ec;
   transform: scale(1.05);
+}
+
+/* ===== BOTÓN ATRÁS ===== */
+.atras-btn {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #888;
+  cursor: pointer;
+  user-select: none;
+}
+
+.atras-btn:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -147,8 +160,8 @@ body {
   </div>
 </div>
 
-<!-- BOTÓN -->
-<div class="empezamos-btn" onclick="empezar()">
+<!-- BOTÓN EMPEZAMOS -->
+<div class="empezamos-btn" id="btnEmpezamos" onclick="empezar()">
   💗 Empezamos
 </div>
 
@@ -156,18 +169,26 @@ body {
 <div class="pregunta" id="pregunta">
   <div class="pregunta-box">
     <h2>¿Cómo te sientes?</h2>
+
     <div class="opciones">
       <div class="nube" onclick="respuesta('feliz')">😊 Feliz</div>
       <div class="nube" onclick="respuesta('triste')">😔 Triste</div>
       <div class="nube" onclick="respuesta('caliente')">🔥 Caliente</div>
     </div>
+
+    <div class="atras-btn" onclick="volver()">← Atrás</div>
   </div>
 </div>
 
 <script>
 function empezar() {
-  document.querySelector('.empezamos-btn').style.display = 'none';
+  document.getElementById('btnEmpezamos').style.display = 'none';
   document.getElementById('pregunta').style.display = 'flex';
+}
+
+function volver() {
+  document.getElementById('pregunta').style.display = 'none';
+  document.getElementById('btnEmpezamos').style.display = 'block';
 }
 
 function respuesta(opcion) {
