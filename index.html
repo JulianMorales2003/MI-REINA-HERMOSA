@@ -13,124 +13,109 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: #000;
   overflow-y: auto;
+}
+
+/* Scroll invisible */
+body::-webkit-scrollbar {
+  width: 0;
+}
+body {
+  scrollbar-width: none;
 }
 
 /* COLLAGE */
 .collage {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-auto-rows: 33vh;
-  width: 100vw;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  padding: 6px;
 }
 
 .collage img {
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 /* BOTÓN EMPEZAMOS */
 .empezamos {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #ff6f91;
-  color: white;
-  padding: 18px 30px;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.empezamos button {
+  pointer-events: auto;
+  padding: 18px 40px;
   border-radius: 35px;
   font-size: 20px;
   border: none;
+  background: linear-gradient(135deg,#ff6f91,#ff2e63);
+  color: white;
   cursor: pointer;
-  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform .2s;
 }
 
-/* PREGUNTA */
-.pregunta {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
+.empezamos button:hover {
+  transform: scale(1.1);
 }
 
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-}
-
-.opciones a {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #333;
-  font-size: 18px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.feliz { background: #ffe066; }
-.triste { background: #cdb4db; }
-.caliente { background: #ffafcc; }
-
-.atras {
-  margin-top: 15px;
-  font-size: 14px;
-  background: none;
-  border: none;
-  color: #777;
-  cursor: pointer;
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .collage {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .collage img {
+    height: 220px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- COLLAGE -->
 <div class="collage">
-  <!-- usa tus fotos reales -->
-  <img src="foto1.jpg"><img src="foto2.jpg"><img src="foto3.jpg">
-  <img src="foto4.jpg"><img src="foto5.jpg"><img src="foto6.jpg">
-  <img src="foto7.jpg"><img src="foto8.jpg"><img src="foto9.jpg">
-  <img src="foto10.jpg"><img src="foto11.jpg"><img src="foto12.jpg">
-  <img src="foto13.jpg"><img src="foto14.jpg"><img src="foto15.jpg">
-  <img src="foto16.jpg"><img src="foto17.jpg"><img src="foto18.jpg">
-  <img src="foto19.jpg"><img src="foto20.jpg"><img src="foto21.jpg">
-  <img src="foto22.jpg"><img src="foto23.jpg"><img src="foto24.jpg">
-  <img src="foto25.jpg"><img src="foto26.jpg"><img src="foto27.jpg">
+  <!-- 26 fotos -->
+  <img src="foto1.jpg">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+  <img src="foto4.jpg">
+  <img src="foto5.jpg">
+  <img src="foto6.jpg">
+  <img src="foto7.jpg">
+  <img src="foto8.jpg">
+  <img src="foto9.jpg">
+  <img src="foto10.jpg">
+  <img src="foto11.jpg">
+  <img src="foto12.jpg">
+  <img src="foto13.jpg">
+  <img src="foto14.jpg">
+  <img src="foto15.jpg">
+  <img src="foto16.jpg">
+  <img src="foto17.jpg">
+  <img src="foto18.jpg">
+  <img src="foto19.jpg">
+  <img src="foto20.jpg">
+  <img src="foto21.jpg">
+  <img src="foto22.jpg">
+  <img src="foto23.jpg">
+  <img src="foto24.jpg">
+  <img src="foto25.jpg">
+  <img src="foto26.jpg">
 </div>
 
-<button class="empezamos" onclick="abrir()">💗 Empezamos</button>
-
-<!-- PREGUNTA -->
-<div class="pregunta" id="pregunta">
-  <div class="card">
-    <h2>¿Cómo te sientes?</h2>
-    <div class="opciones">
-      <a href="feliz.html" class="feliz">😊 Feliz</a>
-      <a href="#" class="triste">😔 Triste</a>
-      <a href="#" class="caliente">🔥 Caliente</a>
-    </div>
-    <button class="atras" onclick="cerrar()">Atrás</button>
-  </div>
+<div class="empezamos">
+  <button onclick="location.href='feliz.html'">
+    💗 Empezamos
+  </button>
 </div>
-
-<script>
-function abrir() {
-  document.getElementById("pregunta").style.display = "flex";
-}
-function cerrar() {
-  document.getElementById("pregunta").style.display = "none";
-}
-</script>
 
 </body>
 </html>
