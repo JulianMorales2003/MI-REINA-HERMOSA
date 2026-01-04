@@ -9,21 +9,8 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #ffe3ec;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #333;
-    }
-
-    /* ===== OVERLAY SUAVE ===== */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 221, 225, 0.6);
-      z-index: -1;
+      overflow: hidden;
     }
 
     /* ===== COLLAGE ===== */
@@ -33,53 +20,57 @@
       display: grid;
       grid-template-columns: repeat(9, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      z-index: -2;
+      z-index: -1;
     }
 
     .collage img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* ❌ SIN OPACIDAD NI FILTROS */
     }
 
-    /* ===== BOTÓN EMPEZAMOS ===== */
+    /* ===== BOTÓN EMPEZAMOS CENTRADO ===== */
     .empezamos-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .empezamos-btn button {
       background: #ff6f91;
       color: white;
-      padding: 14px 22px;
-      border-radius: 30px;
-      font-size: 16px;
+      padding: 18px 30px;
+      border-radius: 40px;
+      font-size: 20px;
       font-weight: bold;
+      border: none;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       transition: transform 0.2s, background 0.2s;
-      z-index: 1000;
     }
 
-    .empezamos-btn:hover {
+    .empezamos-btn button:hover {
       background: #ff4f7b;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
-    /* ===== PANTALLA MENU ===== */
+    /* ===== MENU ===== */
     .menu-pagina {
       display: none;
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #ffd6e0, #ffeef2);
-      z-index: 2000;
+      background: #fff;
+      z-index: 20;
       justify-content: center;
       align-items: center;
     }
 
     .menu-card {
-      background: white;
       width: 90%;
-      max-width: 400px;
+      max-width: 420px;
       padding: 25px;
       border-radius: 20px;
       text-align: center;
@@ -87,21 +78,16 @@
       position: relative;
     }
 
-    /* ===== BOTÓN VOLVER ===== */
     .volver-btn {
       position: absolute;
       top: 12px;
       left: 12px;
-      background: #ffd1dc;
+      background: #eee;
       border: none;
       padding: 6px 12px;
       border-radius: 12px;
       cursor: pointer;
       font-size: 14px;
-    }
-
-    .volver-btn:hover {
-      background: #ffb3c6;
     }
 
     .menu-opciones button {
@@ -160,15 +146,15 @@
     <img src="foto27.jpg">
   </div>
 
-  <!-- BOTÓN EMPEZAR -->
-  <div class="empezamos-btn" id="btnEmpezar" onclick="mostrarMenu()">
-    💗 Empezamos
+  <!-- BOTÓN EMPEZAMOS -->
+  <div class="empezamos-btn" id="btnEmpezar">
+    <button onclick="mostrarMenu()">💗 Empezamos</button>
   </div>
 
   <!-- MENU -->
   <div class="menu-pagina" id="menuPagina">
     <div class="menu-card">
-      
+
       <button class="volver-btn" onclick="volver()">⬅ Volver</button>
 
       <h2>💖 Para ti</h2>
@@ -194,7 +180,7 @@
 
     function volver() {
       document.getElementById("menuPagina").style.display = "none";
-      document.getElementById("btnEmpezar").style.display = "block";
+      document.getElementById("btnEmpezar").style.display = "flex";
       document.getElementById("contenido").innerHTML = "Elige algo bonito 💕";
     }
 
@@ -210,11 +196,11 @@
       }
 
       if (tipo === "fotos") {
-        c.innerHTML = "📸 Cada foto es un pedacito de nosotros.";
+        c.innerHTML = "📸 Cada foto es un recuerdo nuestro.";
       }
 
       if (tipo === "juego") {
-        c.innerHTML = "🎮 Aquí pronto va un jueguito lindo 😘";
+        c.innerHTML = "🎮 Aquí va a ir un jueguito bonito 😘";
       }
     }
   </script>
