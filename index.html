@@ -4,12 +4,11 @@
   <meta charset="UTF-8" />
   <title>Para Ti ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      /* Fondo con fotos + overlay para que el texto se lea bien */
-      /* Fondo quitado para usar collage */
+      font-family: Arial, sans-serif;
       background: #ffe3ec;
       min-height: 100vh;
       display: flex;
@@ -17,188 +16,185 @@
       align-items: center;
       color: #333;
     }
-    .container {
-      background: #fff;
-      width: 95%;
-      max-width: 400px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      overflow: hidden;
-    }
-    header {
-      background: #ff6f91;
-      color: white;
-      text-align: center;
-      padding: 15px;
-      font-size: 1.2em;
-    }
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background: #ffe3ec;
-    }
-    nav button {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      background: transparent;
-      font-size: 1em;
-      cursor: pointer;
-    }
-    nav button:hover {
-      background: #ffd1dc;
-    }
-    .content {
-      padding: 20px;
-      display: none;
-      text-align: center;
-    }
-    .content.active {
-      display: block;
-    }
-    img {
-      max-width: 100%;
-      border-radius: 15px;
-      margin-bottom: 10px;
+
+    /* ===== OVERLAY SUAVE ===== */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 221, 225, 0.7);
+      z-index: -1;
     }
 
-    /* Imágenes del collage NO deben heredar estilos globales */
-    .collage img {
-      border-radius: 0;
-      margin-bottom: 0;
-    }
-    }
-    .msg {
-      font-size: 1.1em;
-      margin: 10px 0;
-    }
-    .game button {
-      padding: 10px 15px;
-      font-size: 1em;
-      background: #ff6f91;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .heart {
-      font-size: 2em;
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+    /* ===== COLLAGE ===== */
     .collage {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+      inset: 0;
       display: grid;
-      grid-template-columns: repeat(9, 1fr); /* 9 columnas */
-      grid-template-rows: repeat(3, 1fr);    /* 3 filas = 27 fotos */
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      z-index: -2;
     }
 
-    .collage .img {
+    .collage img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       filter: brightness(0.75);
     }
 
-    .img1 { grid-column: 1; grid-row: 1; }
-    .img2 { grid-column: 2; grid-row: 1; }
-    .img3 { grid-column: 1; grid-row: 2; }
-    .img4 { grid-column: 2; grid-row: 2; }
-
+    /* ===== BOTÓN EMPEZAMOS ===== */
     .empezamos-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ff6f91;
-    color: white;
-    padding: 14px 20px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    transition: transform 0.2s, background 0.2s;
-    z-index: 1000;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ff6f91;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: transform 0.2s, background 0.2s;
+      z-index: 1000;
     }
-  
+
     .empezamos-btn:hover {
       background: #ff4f7b;
       transform: scale(1.05);
     }
 
-    body::before {
-      content: "";
+    /* ===== PANTALLA MENU ===== */
+    .menu-pagina {
+      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255, 221, 225, 0.7);
-      z-index: -1;
+      inset: 0;
+      background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
     }
-</style>
+
+    .menu-card {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .menu-card h2 {
+      margin-top: 0;
+    }
+
+    .menu-opciones button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #ff6f91;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-opciones button:hover {
+      background: #ff4f7b;
+    }
+
+    .contenido {
+      margin-top: 15px;
+      font-size: 1.1em;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Fondo tipo collage -->
+
+  <!-- COLLAGE -->
   <div class="collage">
-    <img src="foto1.jpg" class="img" />
-    <img src="foto2.jpg" class="img" />
-    <img src="foto3.jpg" class="img" />
-    <img src="foto4.jpg" class="img" />
-    <img src="foto5.jpg" class="img" />
-    <img src="foto6.jpg" class="img" />
-    <img src="foto7.jpg" class="img" />
-    <img src="foto8.jpg" class="img" />
-    <img src="foto9.jpg" class="img" />
-    <img src="foto10.jpg" class="img" />
-    <img src="foto11.jpg" class="img" />
-    <img src="foto12.jpg" class="img" />
-    <img src="foto13.jpg" class="img" />
-    <img src="foto14.jpg" class="img" />
-    <img src="foto15.jpg" class="img" />
-    <img src="foto16.jpg" class="img" />
-    <img src="foto17.jpg" class="img" />
-    <img src="foto18.jpg" class="img" />
-    <img src="foto19.jpg" class="img" />
-    <img src="foto20.jpg" class="img" />
-    <img src="foto21.jpg" class="img" />
-    <img src="foto22.jpg" class="img" />
-    <img src="foto23.jpg" class="img" />
-    <img src="foto24.jpg" class="img" />
-    <img src="foto25.jpg" class="img" />
-    <img src="foto26.jpg" class="img" />
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+    <img src="foto4.jpg">
+    <img src="foto5.jpg">
+    <img src="foto6.jpg">
+    <img src="foto7.jpg">
+    <img src="foto8.jpg">
+    <img src="foto9.jpg">
+    <img src="foto10.jpg">
+    <img src="foto11.jpg">
+    <img src="foto12.jpg">
+    <img src="foto13.jpg">
+    <img src="foto14.jpg">
+    <img src="foto15.jpg">
+    <img src="foto16.jpg">
+    <img src="foto17.jpg">
+    <img src="foto18.jpg">
+    <img src="foto19.jpg">
+    <img src="foto20.jpg">
+    <img src="foto21.jpg">
+    <img src="foto22.jpg">
+    <img src="foto23.jpg">
+    <img src="foto24.jpg">
+    <img src="foto25.jpg">
+    <img src="foto26.jpg">
+    <img src="foto27.jpg">
   </div>
 
-  <div class="empezamos-btn" onclick="mostrarMenu()">
-  💗 Empezamos
+  <!-- BOTÓN -->
+  <div class="empezamos-btn" id="btnEmpezar" onclick="mostrarMenu()">
+    💗 Empezamos
+  </div>
+
+  <!-- MENU -->
+  <div class="menu-pagina" id="menuPagina">
+    <div class="menu-card">
+      <h2>💖 Para ti</h2>
+
+      <div class="menu-opciones">
+        <button onclick="mostrarContenido('inicio')">Inicio</button>
+        <button onclick="mostrarContenido('mensajes')">Mensajes</button>
+        <button onclick="mostrarContenido('fotos')">Fotos</button>
+        <button onclick="mostrarContenido('juego')">Jueguito</button>
+      </div>
+
+      <div class="contenido" id="contenido">
+        Elige algo bonito 💕
+      </div>
+    </div>
   </div>
 
   <script>
-    function showTab(id) {
-      document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+    function mostrarMenu() {
+      document.getElementById("menuPagina").style.display = "flex";
+      document.getElementById("btnEmpezar").style.display = "none";
     }
 
-    function amor() {
-      const mensajes = [
-        'Te amo 💗',
-        'Todo va a estar bien 🌈',
-        'Aquí estoy contigo 🤍',
-        'Eres mi lugar seguro 🫶',
-        'Esto también pasará 🌸'
-      ];
-      const random = mensajes[Math.floor(Math.random() * mensajes.length)];
-      document.getElementById('resultado').innerText = random;
+    function mostrarContenido(tipo) {
+      const c = document.getElementById("contenido");
+
+      if (tipo === "inicio") {
+        c.innerHTML = "💖 Amor, estoy contigo incluso en los días difíciles.";
+      }
+
+      if (tipo === "mensajes") {
+        c.innerHTML = "🌸 Respira, todo va a pasar. Te amo.";
+      }
+
+      if (tipo === "fotos") {
+        c.innerHTML = "📸 Cada foto es un recuerdo nuestro.";
+      }
+
+      if (tipo === "juego") {
+        c.innerHTML = "🎮 Próximamente un jueguito lleno de amor 😘";
+      }
     }
   </script>
+
 </body>
 </html>
