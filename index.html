@@ -6,26 +6,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== RESET GENERAL ===== */
 body {
   margin: 0;
   background: #000;
   font-family: Arial, sans-serif;
-  overflow: hidden;              /* Evita doble scroll */
-  overscroll-behavior: none;     /* Evita rebote raro en móvil */
-  touch-action: pan-y;
+  overflow: hidden;
 }
 
-/* ===== CONTENEDOR CON SCROLL INVISIBLE ===== */
+/* ===== SCROLL INVISIBLE ===== */
 .scroll-wrapper {
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
 
 .scroll-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome / Safari */
+  display: none;
 }
 
 /* ===== COLLAGE ===== */
@@ -33,31 +30,23 @@ body {
   width: 100vw;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: repeat(9, 1fr); /* PC */
+  grid-template-columns: repeat(9, 1fr);
   gap: 4px;
 }
 
 .collage img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Sin bordes negros */
+  object-fit: cover;
   display: block;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
-/* ===== TABLET ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .collage {
-    grid-template-columns: repeat(5, 1fr);
-  }
+  .collage { grid-template-columns: repeat(5, 1fr); }
 }
-
-/* ===== CELULAR ===== */
 @media (max-width: 768px) {
-  .collage {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .collage { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ===== BOTÓN EMPEZAMOS ===== */
@@ -72,84 +61,118 @@ body {
   border-radius: 40px;
   font-size: 18px;
   font-weight: bold;
-  cursor: grab;
-  user-select: none;
+  cursor: pointer;
   z-index: 10;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-.empezamos-btn:active {
-  cursor: grabbing;
+/* ===== PREGUNTA ===== */
+.pregunta {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.pregunta-box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.pregunta-box h2 {
+  margin-bottom: 20px;
+  color: #ff6f91;
+}
+
+/* ===== NUBES ===== */
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nube {
+  background: #f1f1f1;
+  padding: 12px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.nube:hover {
+  background: #ffe3ec;
+  transform: scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== SCROLL INVISIBLE ===== -->
 <div class="scroll-wrapper">
   <div class="collage">
-    <img src="foto1.jpg">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
-    <img src="foto4.jpg">
-    <img src="foto5.jpg">
-    <img src="foto6.jpg">
-    <img src="foto7.jpg">
-    <img src="foto8.jpg">
-    <img src="foto9.jpg">
-    <img src="foto10.jpg">
-    <img src="foto11.jpg">
-    <img src="foto12.jpg">
-    <img src="foto13.jpg">
-    <img src="foto14.jpg">
-    <img src="foto15.jpg">
-    <img src="foto16.jpg">
-    <img src="foto17.jpg">
-    <img src="foto18.jpg">
-    <img src="foto19.jpg">
-    <img src="foto20.jpg">
-    <img src="foto21.jpg">
-    <img src="foto22.jpg">
-    <img src="foto23.jpg">
-    <img src="foto24.jpg">
-    <img src="foto25.jpg">
-    <img src="foto26.jpg">
-    <img src="foto27.jpg">
+    <img src="foto1.jpg" loading="lazy">
+    <img src="foto2.jpg" loading="lazy">
+    <img src="foto3.jpg" loading="lazy">
+    <img src="foto4.jpg" loading="lazy">
+    <img src="foto5.jpg" loading="lazy">
+    <img src="foto6.jpg" loading="lazy">
+    <img src="foto7.jpg" loading="lazy">
+    <img src="foto8.jpg" loading="lazy">
+    <img src="foto9.jpg" loading="lazy">
+    <img src="foto10.jpg" loading="lazy">
+    <img src="foto11.jpg" loading="lazy">
+    <img src="foto12.jpg" loading="lazy">
+    <img src="foto13.jpg" loading="lazy">
+    <img src="foto14.jpg" loading="lazy">
+    <img src="foto15.jpg" loading="lazy">
+    <img src="foto16.jpg" loading="lazy">
+    <img src="foto17.jpg" loading="lazy">
+    <img src="foto18.jpg" loading="lazy">
+    <img src="foto19.jpg" loading="lazy">
+    <img src="foto20.jpg" loading="lazy">
+    <img src="foto21.jpg" loading="lazy">
+    <img src="foto22.jpg" loading="lazy">
+    <img src="foto23.jpg" loading="lazy">
+    <img src="foto24.jpg" loading="lazy">
+    <img src="foto25.jpg" loading="lazy">
+    <img src="foto26.jpg" loading="lazy">
+    <img src="foto27.jpg" loading="lazy">
   </div>
 </div>
 
-<!-- ===== BOTÓN ===== -->
-<div class="empezamos-btn" id="btn">
+<!-- BOTÓN -->
+<div class="empezamos-btn" onclick="empezar()">
   💗 Empezamos
 </div>
 
-<!-- ===== JS PARA MOVER EL BOTÓN ===== -->
+<!-- PREGUNTA -->
+<div class="pregunta" id="pregunta">
+  <div class="pregunta-box">
+    <h2>¿Cómo te sientes?</h2>
+    <div class="opciones">
+      <div class="nube" onclick="respuesta('feliz')">😊 Feliz</div>
+      <div class="nube" onclick="respuesta('triste')">😔 Triste</div>
+      <div class="nube" onclick="respuesta('caliente')">🔥 Caliente</div>
+    </div>
+  </div>
+</div>
+
 <script>
-const btn = document.getElementById("btn");
-let dragging = false;
+function empezar() {
+  document.querySelector('.empezamos-btn').style.display = 'none';
+  document.getElementById('pregunta').style.display = 'flex';
+}
 
-/* PC */
-btn.addEventListener("mousedown", () => dragging = true);
-document.addEventListener("mouseup", () => dragging = false);
-document.addEventListener("mousemove", e => {
-  if (dragging) {
-    btn.style.left = e.clientX + "px";
-    btn.style.top = e.clientY + "px";
-    btn.style.transform = "translate(-50%, -50%)";
-  }
-});
-
-/* MÓVIL */
-btn.addEventListener("touchstart", () => dragging = true);
-document.addEventListener("touchend", () => dragging = false);
-document.addEventListener("touchmove", e => {
-  if (dragging) {
-    btn.style.left = e.touches[0].clientX + "px";
-    btn.style.top = e.touches[0].clientY + "px";
-    btn.style.transform = "translate(-50%, -50%)";
-  }
-});
+function respuesta(opcion) {
+  alert("Elegiste: " + opcion);
+}
 </script>
 
 </body>
