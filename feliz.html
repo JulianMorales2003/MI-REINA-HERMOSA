@@ -21,64 +21,89 @@ body {
   padding: 25px;
   border-radius: 25px;
   width: 90%;
-  max-width: 420px;
+  max-width: 430px;
   text-align: center;
 }
 
-h2 {
-  margin-top: 0;
-}
+h2 { margin-top: 0; }
 
 /* MENÚ */
 .menu button {
-  margin: 8px;
-  padding: 10px 18px;
-  border-radius: 25px;
+  margin: 6px;
+  padding: 12px 20px;
+  border-radius: 30px;
   border: none;
   cursor: pointer;
   font-size: 15px;
-  background: #ffd6e8;
+  background: linear-gradient(#ffd6e8, #ffb6d5);
+  transition: transform .2s;
 }
+.menu button:hover { transform: scale(1.05); }
 
-/* NUBES */
+/* MENSAJES */
 .nube {
-  background: #eaf6ff;
-  margin: 10px auto;
+  max-width: 75%;
   padding: 12px 18px;
   border-radius: 25px;
-  width: fit-content;
-  max-width: 90%;
-  box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-  animation: aparecer 0.4s ease;
+  margin: 10px 0;
+  background: #eaf6ff;
+  box-shadow: 0 5px 12px rgba(0,0,0,.15);
+  animation: aparecer .4s ease;
 }
 
+.izq { margin-right: auto; }
+.der { margin-left: auto; background: #d7efff; }
+
 @keyframes aparecer {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(.9); }
   to { opacity: 1; transform: scale(1); }
 }
 
 /* MOMENTOS */
-.momentos button {
-  margin: 8px;
-  padding: 10px 16px;
-  border-radius: 20px;
-  border: none;
-  background: #bde0fe;
-  cursor: pointer;
-}
-
 .galeria {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   margin-top: 15px;
 }
-
 .galeria img, .galeria video {
   width: 100%;
   height: 90px;
   object-fit: cover;
   border-radius: 12px;
+}
+
+/* JUEGUITO */
+.juego {
+  margin-top: 15px;
+}
+.botones-juego {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.si, .no {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.si { background: #ff6fae; color: white; }
+.no { background: #ddd; }
+
+.corazon {
+  font-size: 40px;
+  margin: 20px 0;
+  transition: transform .3s;
+}
+
+.mensaje-final {
+  margin-top: 25px;
+  font-size: 18px;
+  color: #ff4f9a;
+  font-weight: bold;
 }
 
 /* ATRÁS */
@@ -99,13 +124,12 @@ h2 {
 <body>
 
 <div class="container">
-
   <h2>😊 Feliz</h2>
 
-  <!-- MENÚ -->
   <div class="menu">
-    <button onclick="mostrarMensajes()">💬 Mensajes</button>
-    <button onclick="mostrarMomentos()">🖼️ Momentos</button>
+    <button onclick="ver('mensajes')">💬 Mensajes</button>
+    <button onclick="ver('momentos')">🖼️ Momentos</button>
+    <button onclick="ver('juego')">💗 Jueguito</button>
   </div>
 
   <!-- MENSAJES -->
@@ -118,66 +142,71 @@ h2 {
   <!-- MOMENTOS -->
   <div id="momentos" style="display:none;">
     <h3>Momentos</h3>
-    <div class="momentos">
-      <button onclick="verFotos()">📸 Fotos</button>
-      <button onclick="verVideos()">🎥 Videos</button>
-    </div>
-
+    <button onclick="verFotos()">📸 Fotos</button>
+    <button onclick="verVideos()">🎥 Videos</button>
     <div class="galeria" id="galeria"></div>
   </div>
 
+  <!-- JUEGUITO -->
+  <div id="juego" style="display:none;" class="juego">
+    <h3>¿Crees que tu novio te ama?</h3>
+
+    <div class="corazon" id="corazon">💗</div>
+
+    <div class="botones-juego">
+      <button class="no" id="no">No</button>
+      <button class="si" onclick="amar()">Sí</button>
+    </div>
+
+    <div class="mensaje-final" id="mensaje"></div>
+  </div>
 </div>
 
 <button class="atras" onclick="history.back()">← Atrás</button>
 
 <script>
-/* FRASES – dime luego las definitivas y las cambio */
+/* FRASES (puedes meter muchas más) */
 const frases = [
-  "Porque iluminas mis días ☀️",
-  "Porque contigo todo es hogar 🏡",
-  "Porque tu sonrisa me calma 🤍",
-  "Porque eres mi lugar seguro 💙",
-  "Porque te elegiría siempre 🌷"
+ "Porque iluminas mis días ☀️",
+ "Porque contigo todo es hogar 🏡",
+ "Porque tu sonrisa me calma 🤍",
+ "Porque eres mi lugar seguro 💙",
+ "Porque te elegiría siempre 🌷",
+ "Porque me haces sentir paz",
+ "Porque contigo soy yo",
+ "Porque me haces reír",
+ "Porque me cuidas",
+ "Porque me entiendes",
+ "Porque me amas",
+ "Porque eres tú"
 ];
 
 let indice = 0;
 
-function mostrarMensajes() {
-  document.getElementById("mensajes").style.display = "block";
-  document.getElementById("momentos").style.display = "none";
+function ver(id) {
+  document.querySelectorAll('#mensajes,#momentos,#juego')
+    .forEach(d => d.style.display = "none");
+  document.getElementById(id).style.display = "block";
 }
 
 function nuevaRazon() {
   if (indice < frases.length) {
     const div = document.createElement("div");
-    div.className = "nube";
+    div.className = "nube " + (indice % 2 === 0 ? "izq" : "der");
     div.innerText = frases[indice];
     document.getElementById("razones").appendChild(div);
     indice++;
   }
 }
 
-function mostrarMomentos() {
-  document.getElementById("momentos").style.display = "block";
-  document.getElementById("mensajes").style.display = "none";
-}
-
-/* FOTOS */
+/* MOMENTOS */
 function verFotos() {
-  const galeria = document.getElementById("galeria");
   galeria.innerHTML = `
-    <img src="foto1.jpg">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
-    <img src="foto4.jpg">
-    <img src="foto5.jpg">
-    <img src="foto6.jpg">
+    <img src="foto30.jpg"><img src="foto32.jpg"><img src="foto34.jpg">
+    <img src="foto31.jpg"><img src="foto33.jpg"><img src="foto35.jpg">
   `;
 }
-
-/* VIDEOS */
 function verVideos() {
-  const galeria = document.getElementById("galeria");
   galeria.innerHTML = `
     <video src="video1.mp4" controls></video>
     <video src="video2.mp4" controls></video>
@@ -185,6 +214,19 @@ function verVideos() {
     <video src="video4.mp4" controls></video>
   `;
 }
+
+/* JUEGO */
+let tamaño = 1;
+function amar() {
+  tamaño += .2;
+  corazon.style.transform = `scale(${tamaño})`;
+  if (tamaño > 2.5) {
+    mensaje.innerText = "Te ama más de lo que imaginas 💕";
+  }
+}
+no.onmouseover = () => {
+  no.style.transform = `translate(${Math.random()*60-30}px, ${Math.random()*60-30}px)`;
+};
 </script>
 
 </body>
