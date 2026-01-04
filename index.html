@@ -114,7 +114,27 @@
     .img3 { grid-column: 1; grid-row: 2; }
     .img4 { grid-column: 2; grid-row: 2; }
 
-    /* overlay suave encima del collage */
+    .empezamos-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff6f91;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.2s, background 0.2s;
+    z-index: 1000;
+    }
+  
+    .empezamos-btn:hover {
+      background: #ff4f7b;
+      transform: scale(1.05);
+    }
+
     body::before {
       content: "";
       position: fixed;
