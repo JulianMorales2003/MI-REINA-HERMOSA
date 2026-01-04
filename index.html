@@ -29,52 +29,52 @@
       object-fit: cover;
     }
 
-    /* ===== BOTÓN EMPEZAMOS CENTRADO ===== */
+    /* ===== EMPEZAMOS CENTRADO ===== */
     .empezamos-btn {
       position: fixed;
       inset: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 10;
+      z-index: 5;
     }
 
     .empezamos-btn button {
       background: #ff6f91;
       color: white;
-      padding: 18px 30px;
-      border-radius: 40px;
-      font-size: 20px;
+      padding: 20px 36px;
+      border-radius: 45px;
+      font-size: 22px;
       font-weight: bold;
       border: none;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: transform 0.2s;
     }
 
     .empezamos-btn button:hover {
-      background: #ff4f7b;
       transform: scale(1.08);
     }
 
-    /* ===== MENU ===== */
+    /* ===== MENU FLOTANTE (NO TAPA FOTOS) ===== */
     .menu-pagina {
       display: none;
       position: fixed;
       inset: 0;
-      background: #fff;
-      z-index: 20;
+      z-index: 10;
+      display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .menu-card {
+      background: rgba(255,255,255,0.96);
       width: 90%;
       max-width: 420px;
       padding: 25px;
-      border-radius: 20px;
+      border-radius: 22px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
       position: relative;
     }
 
@@ -95,7 +95,7 @@
       margin: 10px 0;
       padding: 12px;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ff6f91;
       color: white;
       font-size: 16px;
@@ -196,11 +196,11 @@
       }
 
       if (tipo === "fotos") {
-        c.innerHTML = "📸 Cada foto es un recuerdo nuestro.";
+        c.innerHTML = "📸 Cada foto es un pedacito de nosotros.";
       }
 
       if (tipo === "juego") {
-        c.innerHTML = "🎮 Aquí va a ir un jueguito bonito 😘";
+        c.innerHTML = "🎮 Aquí luego metemos un jueguito lindo 😘";
       }
     }
   </script>
