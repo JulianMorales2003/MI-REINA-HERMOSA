@@ -6,193 +6,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  background: #000;
   font-family: Arial, sans-serif;
-  overflow: hidden;
-}
-
-/* ===== SCROLL INVISIBLE ===== */
-.scroll-wrapper {
-  width: 100vw;
-  height: 100vh;
   overflow-y: auto;
-  scrollbar-width: none;
 }
 
-.scroll-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-/* ===== COLLAGE ===== */
+/* COLLAGE */
 .collage {
-  width: 100vw;
-  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  gap: 4px;
+  grid-auto-rows: 33vh;
+  width: 100vw;
 }
 
 .collage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-  .collage { grid-template-columns: repeat(5, 1fr); }
-}
-@media (max-width: 768px) {
-  .collage { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* ===== BOTÓN EMPEZAMOS ===== */
-.empezamos-btn {
+/* BOTÓN EMPEZAMOS */
+.empezamos {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #ff6f91;
   color: white;
-  padding: 16px 28px;
-  border-radius: 40px;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 18px 30px;
+  border-radius: 35px;
+  font-size: 20px;
+  border: none;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-/* ===== PREGUNTA ===== */
+/* PREGUNTA */
 .pregunta {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
-  display: none;
   justify-content: center;
   align-items: center;
   z-index: 20;
 }
 
-.pregunta-box {
+.card {
   background: white;
-  padding: 30px 25px 20px;
-  border-radius: 20px;
+  padding: 30px;
+  border-radius: 25px;
   text-align: center;
-  max-width: 300px;
+  width: 90%;
+  max-width: 400px;
 }
 
-.pregunta-box h2 {
-  margin-bottom: 20px;
-  color: #ff6f91;
-}
-
-/* ===== NUBES ===== */
-.opciones {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.nube {
-  background: #f1f1f1;
-  padding: 12px;
+.opciones a {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
   border-radius: 30px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.feliz { background: #ffe066; }
+.triste { background: #cdb4db; }
+.caliente { background: #ffafcc; }
+
+.atras {
+  margin-top: 15px;
+  font-size: 14px;
+  background: none;
+  border: none;
+  color: #777;
   cursor: pointer;
-  font-size: 16px;
-  transition: transform 0.2s, background 0.2s;
-}
-
-.nube:hover {
-  background: #ffe3ec;
-  transform: scale(1.05);
-}
-
-/* ===== BOTÓN ATRÁS ===== */
-.atras-btn {
-  margin-top: 18px;
-  font-size: 13px;
-  color: #888;
-  cursor: pointer;
-  user-select: none;
-}
-
-.atras-btn:hover {
-  text-decoration: underline;
 }
 </style>
 </head>
 
 <body>
 
-<div class="scroll-wrapper">
-  <div class="collage">
-    <img src="foto1.jpg" loading="lazy">
-    <img src="foto2.jpg" loading="lazy">
-    <img src="foto3.jpg" loading="lazy">
-    <img src="foto4.jpg" loading="lazy">
-    <img src="foto5.jpg" loading="lazy">
-    <img src="foto6.jpg" loading="lazy">
-    <img src="foto7.jpg" loading="lazy">
-    <img src="foto8.jpg" loading="lazy">
-    <img src="foto9.jpg" loading="lazy">
-    <img src="foto10.jpg" loading="lazy">
-    <img src="foto11.jpg" loading="lazy">
-    <img src="foto12.jpg" loading="lazy">
-    <img src="foto13.jpg" loading="lazy">
-    <img src="foto14.jpg" loading="lazy">
-    <img src="foto15.jpg" loading="lazy">
-    <img src="foto16.jpg" loading="lazy">
-    <img src="foto17.jpg" loading="lazy">
-    <img src="foto18.jpg" loading="lazy">
-    <img src="foto19.jpg" loading="lazy">
-    <img src="foto20.jpg" loading="lazy">
-    <img src="foto21.jpg" loading="lazy">
-    <img src="foto22.jpg" loading="lazy">
-    <img src="foto23.jpg" loading="lazy">
-    <img src="foto24.jpg" loading="lazy">
-    <img src="foto25.jpg" loading="lazy">
-    <img src="foto26.jpg" loading="lazy">
-    <img src="foto27.jpg" loading="lazy">
-  </div>
+<!-- COLLAGE -->
+<div class="collage">
+  <!-- usa tus fotos reales -->
+  <img src="foto1.jpg"><img src="foto2.jpg"><img src="foto3.jpg">
+  <img src="foto4.jpg"><img src="foto5.jpg"><img src="foto6.jpg">
+  <img src="foto7.jpg"><img src="foto8.jpg"><img src="foto9.jpg">
+  <img src="foto10.jpg"><img src="foto11.jpg"><img src="foto12.jpg">
+  <img src="foto13.jpg"><img src="foto14.jpg"><img src="foto15.jpg">
+  <img src="foto16.jpg"><img src="foto17.jpg"><img src="foto18.jpg">
+  <img src="foto19.jpg"><img src="foto20.jpg"><img src="foto21.jpg">
+  <img src="foto22.jpg"><img src="foto23.jpg"><img src="foto24.jpg">
+  <img src="foto25.jpg"><img src="foto26.jpg"><img src="foto27.jpg">
 </div>
 
-<!-- BOTÓN EMPEZAMOS -->
-<div class="empezamos-btn" id="btnEmpezamos" onclick="empezar()">
-  💗 Empezamos
-</div>
+<button class="empezamos" onclick="abrir()">💗 Empezamos</button>
 
 <!-- PREGUNTA -->
 <div class="pregunta" id="pregunta">
-  <div class="pregunta-box">
+  <div class="card">
     <h2>¿Cómo te sientes?</h2>
-
     <div class="opciones">
-      <div class="nube" onclick="respuesta('feliz')">😊 Feliz</div>
-      <div class="nube" onclick="respuesta('triste')">😔 Triste</div>
-      <div class="nube" onclick="respuesta('caliente')">🔥 Caliente</div>
+      <a href="feliz.html" class="feliz">😊 Feliz</a>
+      <a href="#" class="triste">😔 Triste</a>
+      <a href="#" class="caliente">🔥 Caliente</a>
     </div>
-
-    <div class="atras-btn" onclick="volver()">← Atrás</div>
+    <button class="atras" onclick="cerrar()">Atrás</button>
   </div>
 </div>
 
 <script>
-function empezar() {
-  document.getElementById('btnEmpezamos').style.display = 'none';
-  document.getElementById('pregunta').style.display = 'flex';
+function abrir() {
+  document.getElementById("pregunta").style.display = "flex";
 }
-
-function volver() {
-  document.getElementById('pregunta').style.display = 'none';
-  document.getElementById('btnEmpezamos').style.display = 'block';
-}
-
-function respuesta(opcion) {
-  alert("Elegiste: " + opcion);
+function cerrar() {
+  document.getElementById("pregunta").style.display = "none";
 }
 </script>
 
