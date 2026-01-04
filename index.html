@@ -6,68 +6,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  body {
-    margin: 0;
-    background: #000;
-    font-family: Arial, sans-serif;
-    overflow: hidden; /* el scroll lo maneja el contenedor */
-  }
+/* ===== RESET GENERAL ===== */
+body {
+  margin: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+  overflow: hidden;              /* Evita doble scroll */
+  overscroll-behavior: none;     /* Evita rebote raro en móvil */
+  touch-action: pan-y;
+}
 
-  /* CONTENEDOR CON SCROLL INVISIBLE */
-  .scroll-wrapper {
-    width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    scrollbar-width: none; /* Firefox */
-  }
+/* ===== CONTENEDOR CON SCROLL INVISIBLE ===== */
+.scroll-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
 
-  .scroll-wrapper::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
+.scroll-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
 
-  /* COLLAGE */
+/* ===== COLLAGE ===== */
+.collage {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* PC */
+  gap: 4px;
+}
+
+.collage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Sin bordes negros */
+  display: block;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
   .collage {
-    width: 100vw;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 4px;
+    grid-template-columns: repeat(5, 1fr);
   }
+}
 
-  .collage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+/* ===== CELULAR ===== */
+@media (max-width: 768px) {
+  .collage {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  /* BOTÓN EMPEZAMOS */
-  .empezamos-btn {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ff6f91;
-    color: white;
-    padding: 16px 26px;
-    border-radius: 40px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: grab;
-    z-index: 10;
-    user-select: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-  }
+/* ===== BOTÓN EMPEZAMOS ===== */
+.empezamos-btn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ff6f91;
+  color: white;
+  padding: 16px 28px;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: grab;
+  user-select: none;
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
 
-  .empezamos-btn:active {
-    cursor: grabbing;
-  }
+.empezamos-btn:active {
+  cursor: grabbing;
+}
 </style>
 </head>
 
 <body>
 
+<!-- ===== SCROLL INVISIBLE ===== -->
 <div class="scroll-wrapper">
   <div class="collage">
     <img src="foto1.jpg">
@@ -100,33 +117,37 @@
   </div>
 </div>
 
+<!-- ===== BOTÓN ===== -->
 <div class="empezamos-btn" id="btn">
   💗 Empezamos
 </div>
 
+<!-- ===== JS PARA MOVER EL BOTÓN ===== -->
 <script>
-  const btn = document.getElementById("btn");
-  let drag = false;
+const btn = document.getElementById("btn");
+let dragging = false;
 
-  btn.addEventListener("mousedown", () => drag = true);
-  document.addEventListener("mouseup", () => drag = false);
-  document.addEventListener("mousemove", e => {
-    if (drag) {
-      btn.style.left = e.clientX + "px";
-      btn.style.top = e.clientY + "px";
-      btn.style.transform = "translate(-50%, -50%)";
-    }
-  });
+/* PC */
+btn.addEventListener("mousedown", () => dragging = true);
+document.addEventListener("mouseup", () => dragging = false);
+document.addEventListener("mousemove", e => {
+  if (dragging) {
+    btn.style.left = e.clientX + "px";
+    btn.style.top = e.clientY + "px";
+    btn.style.transform = "translate(-50%, -50%)";
+  }
+});
 
-  btn.addEventListener("touchstart", () => drag = true);
-  document.addEventListener("touchend", () => drag = false);
-  document.addEventListener("touchmove", e => {
-    if (drag) {
-      btn.style.left = e.touches[0].clientX + "px";
-      btn.style.top = e.touches[0].clientY + "px";
-      btn.style.transform = "translate(-50%, -50%)";
-    }
-  });
+/* MÓVIL */
+btn.addEventListener("touchstart", () => dragging = true);
+document.addEventListener("touchend", () => dragging = false);
+document.addEventListener("touchmove", e => {
+  if (dragging) {
+    btn.style.left = e.touches[0].clientX + "px";
+    btn.style.top = e.touches[0].clientY + "px";
+    btn.style.transform = "translate(-50%, -50%)";
+  }
+});
 </script>
 
 </body>
