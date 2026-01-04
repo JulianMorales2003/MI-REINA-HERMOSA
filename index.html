@@ -8,114 +8,107 @@
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
     background: #000;
     overflow: hidden;
+    font-family: Arial, sans-serif;
   }
 
-  /* CONTENEDOR CON SCROLL */
-  .collage-container {
-    position: fixed;
-    inset: 0;
-    overflow-y: auto;
-  }
-
-  /* GRID DEL COLLAGE */
+  /* COLLAGE A PANTALLA COMPLETA */
   .collage {
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px; /* separación pequeña */
   }
 
   .collage img {
     width: 100%;
-    height: auto;        /* 🔑 clave para ver fotos completas */
+    height: 100%;
+    object-fit: cover;   /* 🔑 elimina bordes negros */
     display: block;
   }
 
   /* BOTÓN EMPEZAMOS */
   .empezamos-btn {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: #ff6f91;
     color: white;
-    padding: 16px 24px;
+    padding: 16px 26px;
     border-radius: 40px;
     font-size: 18px;
     font-weight: bold;
     cursor: grab;
-    z-index: 1000;
+    z-index: 10;
     user-select: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   }
 
   .empezamos-btn:active {
     cursor: grabbing;
   }
-
 </style>
 </head>
 
 <body>
 
-<!-- COLLAGE CON SCROLL -->
-<div class="collage-container">
-  <div class="collage">
-    <img src="foto1.jpg">
-    <img src="foto2.jpg">
-    <img src="foto3.jpg">
-    <img src="foto4.jpg">
-    <img src="foto5.jpg">
-    <img src="foto6.jpg">
-    <img src="foto7.jpg">
-    <img src="foto8.jpg">
-    <img src="foto9.jpg">
-    <img src="foto10.jpg">
-    <img src="foto11.jpg">
-    <img src="foto12.jpg">
-    <img src="foto13.jpg">
-    <img src="foto14.jpg">
-    <img src="foto15.jpg">
-    <img src="foto16.jpg">
-    <img src="foto17.jpg">
-    <img src="foto18.jpg">
-    <img src="foto19.jpg">
-    <img src="foto20.jpg">
-    <img src="foto21.jpg">
-    <img src="foto22.jpg">
-    <img src="foto23.jpg">
-    <img src="foto24.jpg">
-    <img src="foto25.jpg">
-    <img src="foto26.jpg">
-    <img src="foto27.jpg">
-  </div>
+<div class="collage">
+  <img src="foto1.jpg">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+  <img src="foto4.jpg">
+  <img src="foto5.jpg">
+  <img src="foto6.jpg">
+  <img src="foto7.jpg">
+  <img src="foto8.jpg">
+  <img src="foto9.jpg">
+  <img src="foto10.jpg">
+  <img src="foto11.jpg">
+  <img src="foto12.jpg">
+  <img src="foto13.jpg">
+  <img src="foto14.jpg">
+  <img src="foto15.jpg">
+  <img src="foto16.jpg">
+  <img src="foto17.jpg">
+  <img src="foto18.jpg">
+  <img src="foto19.jpg">
+  <img src="foto20.jpg">
+  <img src="foto21.jpg">
+  <img src="foto22.jpg">
+  <img src="foto23.jpg">
+  <img src="foto24.jpg">
+  <img src="foto25.jpg">
+  <img src="foto26.jpg">
+  <img src="foto27.jpg">
 </div>
 
-<!-- BOTÓN MOVIBLE -->
 <div class="empezamos-btn" id="btn">
   💗 Empezamos
 </div>
 
 <script>
   const btn = document.getElementById("btn");
-  let isDragging = false;
+  let drag = false;
 
-  btn.addEventListener("mousedown", () => isDragging = true);
-  document.addEventListener("mouseup", () => isDragging = false);
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
+  btn.addEventListener("mousedown", () => drag = true);
+  document.addEventListener("mouseup", () => drag = false);
+  document.addEventListener("mousemove", e => {
+    if (drag) {
       btn.style.left = e.clientX + "px";
       btn.style.top = e.clientY + "px";
       btn.style.transform = "translate(-50%, -50%)";
     }
   });
 
-  // Soporte táctil (celular)
-  btn.addEventListener("touchstart", () => isDragging = true);
-  document.addEventListener("touchend", () => isDragging = false);
-  document.addEventListener("touchmove", (e) => {
-    if (isDragging) {
+  // Soporte táctil
+  btn.addEventListener("touchstart", () => drag = true);
+  document.addEventListener("touchend", () => drag = false);
+  document.addEventListener("touchmove", e => {
+    if (drag) {
       btn.style.left = e.touches[0].clientX + "px";
       btn.style.top = e.touches[0].clientY + "px";
       btn.style.transform = "translate(-50%, -50%)";
