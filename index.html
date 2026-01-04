@@ -8,7 +8,13 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      /* Fondo con fotos + overlay para que el texto se lea bien */
+      background-image:
+        linear-gradient(rgba(255, 221, 225, 0.85), rgba(238, 156, 167, 0.85)),
+        url('collage.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       min-height: 100vh;
       display: flex;
       justify-content: center;
