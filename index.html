@@ -56,4 +56,168 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      transition: transform 0.2s, background 0.2
+      transition: transform 0.2s, background 0.2s;
+      z-index: 1000;
+    }
+
+    .empezamos-btn:hover {
+      background: #ff4f7b;
+      transform: scale(1.05);
+    }
+
+    /* ===== PANTALLA MENU ===== */
+    .menu-pagina {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-card {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    /* ===== BOTÓN VOLVER ===== */
+    .volver-btn {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #ffd1dc;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .volver-btn:hover {
+      background: #ffb3c6;
+    }
+
+    .menu-opciones button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #ff6f91;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-opciones button:hover {
+      background: #ff4f7b;
+    }
+
+    .contenido {
+      margin-top: 15px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- COLLAGE -->
+  <div class="collage">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+    <img src="foto4.jpg">
+    <img src="foto5.jpg">
+    <img src="foto6.jpg">
+    <img src="foto7.jpg">
+    <img src="foto8.jpg">
+    <img src="foto9.jpg">
+    <img src="foto10.jpg">
+    <img src="foto11.jpg">
+    <img src="foto12.jpg">
+    <img src="foto13.jpg">
+    <img src="foto14.jpg">
+    <img src="foto15.jpg">
+    <img src="foto16.jpg">
+    <img src="foto17.jpg">
+    <img src="foto18.jpg">
+    <img src="foto19.jpg">
+    <img src="foto20.jpg">
+    <img src="foto21.jpg">
+    <img src="foto22.jpg">
+    <img src="foto23.jpg">
+    <img src="foto24.jpg">
+    <img src="foto25.jpg">
+    <img src="foto26.jpg">
+    <img src="foto27.jpg">
+  </div>
+
+  <!-- BOTÓN EMPEZAR -->
+  <div class="empezamos-btn" id="btnEmpezar" onclick="mostrarMenu()">
+    💗 Empezamos
+  </div>
+
+  <!-- MENU -->
+  <div class="menu-pagina" id="menuPagina">
+    <div class="menu-card">
+      
+      <button class="volver-btn" onclick="volver()">⬅ Volver</button>
+
+      <h2>💖 Para ti</h2>
+
+      <div class="menu-opciones">
+        <button onclick="mostrarContenido('inicio')">Inicio</button>
+        <button onclick="mostrarContenido('mensajes')">Mensajes</button>
+        <button onclick="mostrarContenido('fotos')">Fotos</button>
+        <button onclick="mostrarContenido('juego')">Jueguito</button>
+      </div>
+
+      <div class="contenido" id="contenido">
+        Elige algo bonito 💕
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarMenu() {
+      document.getElementById("menuPagina").style.display = "flex";
+      document.getElementById("btnEmpezar").style.display = "none";
+    }
+
+    function volver() {
+      document.getElementById("menuPagina").style.display = "none";
+      document.getElementById("btnEmpezar").style.display = "block";
+      document.getElementById("contenido").innerHTML = "Elige algo bonito 💕";
+    }
+
+    function mostrarContenido(tipo) {
+      const c = document.getElementById("contenido");
+
+      if (tipo === "inicio") {
+        c.innerHTML = "💖 Amor, estoy contigo incluso en los días difíciles.";
+      }
+
+      if (tipo === "mensajes") {
+        c.innerHTML = "🌸 Respira, todo va a pasar. Te amo.";
+      }
+
+      if (tipo === "fotos") {
+        c.innerHTML = "📸 Cada foto es un pedacito de nosotros.";
+      }
+
+      if (tipo === "juego") {
+        c.innerHTML = "🎮 Aquí pronto va un jueguito lindo 😘";
+      }
+    }
+  </script>
+
+</body>
+</html>
