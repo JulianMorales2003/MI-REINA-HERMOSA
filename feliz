@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz 💛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffe29f, #ffa99f);
+  height: 100vh;
+  overflow: hidden;
+  color: #333;
+}
+
+/* CONTENEDOR GENERAL */
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* TITULO */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.menu button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+
+.menu button:hover {
+  transform: scale(1.1);
+}
+
+/* SECCIONES */
+.section {
+  display: none;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* MENSAJES */
+.message-box {
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* FOTOS */
+.photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.photos div {
+  background: rgba(255,255,255,0.7);
+  height: 120px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* JUEGO */
+.game {
+  position: relative;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.game h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.game button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* BOTON NO */
+#noBtn {
+  background: #ccc;
+  position: relative;
+}
+
+/* BOTON SI */
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+/* CORAZON */
+.heart {
+  font-size: 40px;
+  margin-top: 30px;
+  transition: transform 0.3s;
+}
+
+/* MENSAJE FINAL */
+.final-message {
+  display: none;
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+/* BOTON ATRAS */
+.back {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Hoy estás feliz 💛</h1>
+
+  <!-- MENU -->
+  <div class="menu">
+    <button onclick="showSection('messages')">💬 Mensajes</button>
+    <button onclick="showSection('photos')">🖼️ Fotos</button>
+    <button onclick="showSection('game')">❤️ Jueguito</button>
+  </div>
+
+  <!-- MENSAJES -->
+  <div id="messages" class="section">
+    <div class="message-box">
+      <p>💛 Eres una persona increíble.</p>
+      <p>💛 Gracias por existir.</p>
+      <p>💛 Tu sonrisa lo cambia todo.</p>
+    </div>
+  </div>
+
+  <!-- FOTOS -->
+  <div id="photos" class="section">
+    <div class="photos">
+      <div>Foto 1</div>
+      <div>Foto 2</div>
+      <div>Foto 3</div>
+      <div>Foto 4</div>
+      <div>Foto 5</div>
+      <div>Foto 6</div>
+    </div>
+  </div>
+
+  <!-- JUEGO -->
+  <div id="game" class="section">
+    <div class="game">
+      <h2>¿Tú crees que tu novio te ama?</h2>
+
+      <div class="btns">
+        <button id="noBtn">No</button>
+        <button id="yesBtn">Sí</button>
+      </div>
+
+      <div class="heart" id="heart">❤️</div>
+      <div class="final-message" id="finalMessage">
+        Claro que sí 💛 te ama más de lo que imaginas.
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="back" onclick="goBack()">Atrás</button>
+
+<script>
+let heartSize = 1;
+
+// Mostrar secciones
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+// Botón NO que se mueve
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseover', () => {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Botón SÍ
+document.getElementById('yesBtn').addEventListener('click', () => {
+  heartSize += 0.3;
+  const heart = document.getElementById('heart');
+  heart.style.transform = `scale(${heartSize})`;
+
+  if (heartSize > 3) {
+    document.getElementById('finalMessage').style.display = 'block';
+  }
+});
+
+// Atrás
+function goBack() {
+  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+}
+</script>
+
+</body>
+</html>
