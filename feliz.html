@@ -2,254 +2,232 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Feliz 💙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz 💖</title>
 
 <style>
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #cce9ff;
-  overflow-y: auto;
-}
-body::-webkit-scrollbar { display: none; }
-
-.header {
-  text-align: center;
-  padding: 30px 15px 10px;
-}
-.header h1 {
-  margin: 0;
-  color: #034f84;
+body{
+    margin:0;
+    font-family: 'Arial', sans-serif;
+    background:#d9efff;
+    text-align:center;
 }
 
-/* ===== MENÚ SUPERIOR ===== */
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  padding: 20px;
+/* FRASE */
+#frase{
+    margin:20px;
+    font-size:18px;
+    color:#003;
+    min-height:60px;
 }
 
-.menu button {
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+/* BOTONES */
+.botones{
+    margin:15px 0;
+}
+button{
+    padding:10px 18px;
+    font-size:16px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin:5px;
+}
+.si{
+    background:#ff5b7f;
+    color:white;
+}
+.atras{
+    background:#ccc;
 }
 
-/* ===== SECCIONES ===== */
-.section { display: none; padding: 20px; }
-.section.active { display: block; }
-
-/* ===== FRASES ===== */
-.razon-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+/* MENSAJE EXTRA */
+#mensajeExtra{
+    margin-top:40px;
+    font-size:18px;
+    color:#c2185b;
+    display:none;
 }
 
-.btn-razon {
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+/* GRID VIDEOS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    padding:15px;
+    max-width:400px;
+    margin:auto;
 }
 
-.frase {
-  background: white;
-  padding: 16px 22px;
-  border-radius: 30px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  max-width: 320px;
-  text-align: center;
-  font-size: 14px;
-  animation: aparecer .4s ease;
+/* VIDEOS PEQUEÑOS */
+video{
+    width:100%;
+    border-radius:12px;
+    cursor:pointer;
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* MODAL VIDEO */
+.modal{
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
 }
-
-/* ===== MOMENTOS ===== */
-.galeria-fotos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-.galeria-fotos img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.galeria-videos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-.galeria-videos video {
-  width: 100%;
-  border-radius: 12px;
-}
-
-/* ===== JUEGO ===== */
-.juego { text-align: center; }
-
-.corazon {
-  font-size: 40px;
-  transition: transform .3s;
-  margin-top: 40px;
-}
-
-.btn-si {
-  background: #ff6f91;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-}
-
-.btn-no {
-  position: relative;
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-}
-
-/* ===== ATRÁS ===== */
-.btn-atras {
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: none;
-  background: #034f84;
-  color: white;
-  cursor: pointer;
+.modal video{
+    width:90%;
+    max-width:600px;
 }
 </style>
 </head>
 
 <body>
 
-<button class="btn-atras" onclick="history.back()">← Atrás</button>
+<h2>💙</h2>
 
-<div class="header">
-  <h1>💙 Me alegra que estés feliz</h1>
+<div id="frase"></div>
+
+<div class="botones">
+    <button class="si" onclick="siguienteFrase()">Sí</button>
+    <button class="atras" onclick="volver()">Atrás</button>
 </div>
 
-<div class="menu">
-  <button onclick="mostrar('mensajes')">Mensajes</button>
-  <button onclick="mostrar('momentos')">Momentos</button>
-  <button onclick="mostrar('juego')">Jueguito</button>
+<div id="mensajeExtra">
+    💖 Siempre te amaré más de lo que imaginas 💖
 </div>
 
-<!-- ===== MENSAJES ===== -->
-<div id="mensajes" class="section active">
-  <div class="razon-box">
-    <h2>¿Quieres una razón?</h2>
-    <button class="btn-razon" onclick="mostrarRazon()">Sí 💙</button>
-    <div id="fraseActual"></div>
-  </div>
+<div class="grid">
+    <video src="video1.mp4" muted onclick="abrirVideo(this)"></video>
+    <video src="video2.mp4" muted onclick="abrirVideo(this)"></video>
+    <video src="video3.mp4" muted onclick="abrirVideo(this)"></video>
+    <video src="video4.mp4" muted onclick="abrirVideo(this)"></video>
 </div>
 
-<!-- ===== MOMENTOS ===== -->
-<div id="momentos" class="section">
-  <div class="menu">
-    <button onclick="mostrarFotos()">Fotos</button>
-    <button onclick="mostrarVideos()">Videos</button>
-  </div>
-
-  <div id="fotos" class="galeria-fotos" style="display:none">
-    <img src="foto30.jpg"><img src="foto31.jpg"><img src="foto32.jpg">
-    <img src="foto33.jpg"><img src="foto34.jpg"><img src="foto35.jpg">
-  </div>
-
-  <div id="videos" class="galeria-videos" style="display:none">
-    <video src="video1.mp4" controls></video>
-    <video src="video2.mp4" controls></video>
-    <video src="video3.mp4" controls></video>
-    <video src="video4.mp4" controls></video>
-  </div>
-</div>
-
-<!-- ===== JUEGO ===== -->
-<div id="juego" class="section juego">
-  <h2>¿Tú crees que tu novio te ama?</h2>
-  <div style="margin-top:20px">
-    <button class="btn-no" onmouseover="moverNo()">No</button>
-    <button class="btn-si" onclick="amor()">Sí</button>
-  </div>
-  <div class="corazon" id="corazon">❤️</div>
-  <p id="mensaje-final"></p>
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="cerrarVideo()">
+    <video id="videoGrande" controls autoplay></video>
 </div>
 
 <script>
-function mostrar(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-/* ===== FRASES ===== */
-let frases = [
-  "Te amo porque me haces sentir amado sin tener que pedirlo",
-  "Te amo porque me cuidas incluso cuando no lo digo",
-  "Te amo porque haces mi vida más bonita 💖",
-  "Te amo porque eres tú"
-  // (las demás ya están bien, puedes dejar TODAS aquí)
+const frases = [
+"Te amo porque me haces sentir amado sin tener que pedirlo",
+"Te amo porque me cuidas incluso cuando no lo digo",
+"Te amo porque haces de lo simple algo especial",
+"Te amo porque tu abrazo calma todo",
+"Te amo porque me haces sentir en casa",
+"Te amo porque me escuchas con el corazón",
+"Te amo porque siempre estás cuando te necesito",
+"Te amo porque me haces sonreír en mis días difíciles",
+"Te amo porque cuidas mi corazón",
+"Te amo porque me aceptas tal como soy",
+"Te amo porque confías en mí",
+"Te amo porque me das paz",
+"Te amo porque me haces sentir seguro",
+"Te amo porque me apoyas incluso cuando dudo",
+"Te amo porque me miras con amor",
+"Te amo porque me haces sentir importante",
+"Te amo porque me entiendes sin muchas palabras",
+"Te amo porque me haces sentir acompañado",
+"Te amo porque me das tranquilidad",
+"Te amo porque me haces sentir especial",
+"Te amo porque cuidas de mí con pequeños detalles",
+"Te amo porque me haces sentir valorado",
+"Te amo porque tu cariño es sincero",
+"Te amo porque me haces sentir orgullo de estar contigo",
+"Te amo porque piensas en mí",
+"Te amo porque me das fuerza",
+"Te amo porque haces que todo sea más bonito",
+"Te amo porque me cuidas incluso a la distancia",
+"Te amo porque me haces sentir protegido",
+"Te amo porque tu ternura me calma",
+"Te amo porque me das confianza",
+"Te amo porque me haces sentir comprendido",
+"Te amo porque tu amor se siente real",
+"Te amo porque me das calma cuando todo pesa",
+"Te amo porque me haces sentir ilusión",
+"Te amo porque cuidas mis emociones",
+"Te amo porque me haces sentir querido",
+"Te amo porque estás en los buenos y malos momentos",
+"Te amo porque me das estabilidad",
+"Te amo porque haces que quiera ser mejor",
+"Te amo porque me cuidas cuando estoy cansado",
+"Te amo porque me haces sentir paz",
+"Te amo porque tu voz me tranquiliza",
+"Te amo porque me das apoyo incondicional",
+"Te amo porque me haces sentir alegría",
+"Te amo porque cuidas hasta mis silencios",
+"Te amo porque me haces sentir esperanza",
+"Te amo porque tu amor se nota en tus acciones",
+"Te amo porque me haces sentir pleno",
+"Te amo porque me cuidas con paciencia",
+"Te amo porque me das seguridad emocional",
+"Te amo porque me haces sentir conexión contigo",
+"Te amo porque me acompañas sin juzgar",
+"Te amo porque tu presencia me calma",
+"Te amo porque me haces sentir bienestar",
+"Te amo porque me das amor sin condiciones",
+"Te amo porque me cuidas incluso cuando no estoy bien",
+"Te amo porque me haces sentir alegría sincera",
+"Te amo porque estás pendiente de mí",
+"Te amo porque haces que todo tenga sentido",
+"Te amo porque me cuidas con respeto",
+"Te amo porque me haces sentir equilibrio",
+"Te amo porque me das cariño verdadero",
+"Te amo porque me haces sentir conexión profunda",
+"Te amo porque me apoyas siempre",
+"Te amo porque me haces sentir tranquilidad contigo",
+"Te amo porque me das amor real",
+"Te amo porque me haces sentir ternura",
+"Te amo porque me cuidas con honestidad",
+"Te amo porque me haces sentir calma mental",
+"Te amo porque me das compañía sincera",
+"Te amo porque me haces sentir felicidad diaria",
+"Te amo porque tus detalles hablan de amor",
+"Te amo porque me haces sentir ilusión por el futuro",
+"Te amo porque me das amor sin prisas",
+"Te amo porque me haces sentir paz a tu lado",
+"Te amo porque me cuidas con tu cariño",
+"Te amo porque me haces sentir confianza plena",
+"Te amo porque me das tranquilidad emocional",
+"Te amo porque me haces sentir calidez",
+"Te amo porque contigo me siento hogar",
+"Te amo porque eres tú",
+"Te amo porque haces mi vida más bonita 💖"
 ];
 
-frases = frases.sort(() => Math.random() - 0.5);
-let indice = 0;
+let index = 0;
+let contadorSi = 0;
 
-function mostrarRazon() {
-  if (indice >= frases.length) return;
-  const div = document.createElement('div');
-  div.className = 'frase';
-  div.textContent = frases[indice++];
-  document.getElementById('fraseActual').appendChild(div);
-}
+function siguienteFrase(){
+    document.getElementById("frase").innerText = frases[index];
+    index = (index + 1) % frases.length;
+    contadorSi++;
 
-/* ===== MOMENTOS ===== */
-function mostrarFotos() {
-  fotos.style.display = 'grid';
-  videos.style.display = 'none';
-}
-function mostrarVideos() {
-  videos.style.display = 'grid';
-  fotos.style.display = 'none';
+    if(contadorSi >= 5){
+        document.getElementById("mensajeExtra").style.display = "block";
+    }
 }
 
-/* ===== JUEGO ===== */
-let escala = 1;
-function moverNo() {
-  event.target.style.transform =
-    `translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+function volver(){
+    history.back();
 }
-function amor() {
-  escala += 0.4;
-  corazon.style.transform = `scale(${escala})`;
-  if (escala > 3) {
-    document.getElementById('mensaje-final').innerText =
-      '💙 Siempre te amo, más de lo que imaginas';
-  }
+
+function abrirVideo(video){
+    const modal = document.getElementById("modal");
+    const grande = document.getElementById("videoGrande");
+    grande.src = video.src;
+    modal.style.display = "flex";
+}
+
+function cerrarVideo(){
+    const modal = document.getElementById("modal");
+    const grande = document.getElementById("videoGrande");
+    grande.pause();
+    grande.src = "";
+    modal.style.display = "none";
 }
 </script>
 
