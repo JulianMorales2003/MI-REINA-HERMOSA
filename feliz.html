@@ -154,6 +154,62 @@ body { scrollbar-width: none; }
   color: white;
   cursor: pointer;
 }
+
+/* ===== BOTONES JUEGUITO ===== */
+.zona-botones {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.btn-juego {
+  padding: 14px 34px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* BOTÓN SÍ 💗 */
+.btn-si {
+  background: linear-gradient(135deg, #ff6f91, #ff9aa2);
+  color: white;
+}
+
+.btn-si:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(255,111,145,0.6);
+}
+
+/* BOTÓN NO 😈 */
+.btn-no {
+  background: linear-gradient(135deg, #444, #666);
+  color: white;
+}
+
+.btn-no:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AJUSTE MOMENTOS - CELULAR ===== */
+@media (max-width: 768px) {
+
+  .galeria-fotos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .galeria-fotos img {
+    height: 180px;
+    border-radius: 12px;
+  }
+
+}
+
 </style>
 </head>
 
@@ -190,7 +246,6 @@ body { scrollbar-width: none; }
   </div>
 
   <div id="videos" class="galeria-videos" style="display:none">
-    <video src="video1.mp4" controls></video>
     <video src="video2.mp4" controls></video>
     <video src="video3.mp4" controls></video>
     <video src="video4.mp4" controls></video>
@@ -201,10 +256,10 @@ body { scrollbar-width: none; }
 <div id="juego" class="section juego">
   <h2>¿Tú crees que tu novio te ama?</h2>
 
-  <div style="margin-top:20px">
-    <button class="menu btn-no" onmouseover="moverNo()">No</button>
-    <button class="menu btn-si" onclick="amor()">Sí</button>
-  </div>
+  <div class="zona-botones">
+    <button class="btn-juego btn-no" onmouseover="moverNo()">No</button>
+    <button class="btn-juego btn-si" onclick="amor()">Sí</button>
+  </div
 
   <div class="corazon" id="corazon">❤️</div>
 
