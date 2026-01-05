@@ -115,32 +115,57 @@ body { scrollbar-width: none; }
   border-radius: 10px;
 }
 
-/* ===== JUEGUITO ===== */
+/* ===== JUEGUITO MEJORADO ===== */
 .juego {
   text-align: center;
+  padding-bottom: 80px;
 }
 
-.corazon {
-  font-size: 40px;
-  transition: transform .3s;
-  margin-top: 25px;
+.juego-botones {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.btn-juego {
+  padding: 14px 34px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btn-si {
-  background: #ff6f91;
+  background: linear-gradient(135deg, #ff6f91, #ff9671);
   color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.btn-si:active {
+  transform: scale(0.95);
 }
 
 .btn-no {
+  background: #eeeeee;
+  color: #555;
   position: relative;
 }
 
-/* MENSAJE FINAL MÁS ABAJO */
+/* Corazón más separado */
+.corazon {
+  margin-top: 50px;
+}
+
+/* Mensaje final bien abajo */
 #mensaje-final {
   margin-top: 60px;
   font-size: 18px;
   color: #034f84;
 }
+
 
 /* ===== ATRÁS ===== */
 .btn-atras {
@@ -256,13 +281,12 @@ body { scrollbar-width: none; }
 <div id="juego" class="section juego">
   <h2>¿Tú crees que tu novio te ama?</h2>
 
-  <div class="zona-botones">
+  <div class="juego-botones">
     <button class="btn-juego btn-no" onmouseover="moverNo()">No</button>
     <button class="btn-juego btn-si" onclick="amor()">Sí</button>
-  </div
+  </div>
 
   <div class="corazon" id="corazon">❤️</div>
-
   <p id="mensaje-final"></p>
 </div>
 
@@ -338,20 +362,25 @@ function mostrarVideos() {
 
 /* ===== JUEGO ===== */
 let escala = 1;
+let clicks = 0;
+
 function moverNo() {
-  const no = document.querySelector(".btn-no");
-  no.style.transform =
-    `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px)`;
+  const no = document.querySelector('.btn-no');
+  no.style.transform = `translate(${Math.random()*180 - 90}px, ${Math.random()*180 - 90}px)`;
 }
 
 function amor() {
-  escala += 0.4;
+  clicks++;
+  escala += 0.25;
+  const corazon = document.getElementById('corazon');
   corazon.style.transform = `scale(${escala})`;
-  if (escala > 3) {
-    document.getElementById("mensaje-final").innerText =
-      "💙 Siempre te amo, más de lo que imaginas";
+
+  if (clicks >= 6) {
+    document.getElementById('mensaje-final').innerText =
+      '💙 Siempre te amo, más de lo que imaginas';
   }
 }
+
 </script>
 
 </body>
