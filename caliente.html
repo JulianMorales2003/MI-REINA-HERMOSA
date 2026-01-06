@@ -1,1 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Caliente 🔥</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #e8d9ff, #d6bfff);
+  min-height: 100vh;
+}
+
+.caliente-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  text-align: center;
+  gap: 25px;
+}
+
+/* TEXTO SUPERIOR */
+.intro {
+  font-size: 17px;
+  color: #4b2e83;
+  max-width: 420px;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* IMÁGENES */
+.fotos {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  max-width: 520px;
+  justify-content: center;
+}
+
+.fotos img {
+  width: 48%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* PREGUNTA */
+.pregunta-caliente {
+  font-size: 20px;
+  color: #3b1c5a;
+  margin-top: 10px;
+}
+
+.pregunta-caliente span {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+/* OPCIONES */
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.opciones button {
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: #4b2e83;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.opciones button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* ATRÁS */
+.btn-atras {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #4b2e83;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .fotos img {
+    height: 180px;
+  }
+
+  .pregunta-caliente {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="caliente-container">
+
+  <div class="intro">
+    Esta sección es muy personal e importante de nosotros como pareja.
+  </div>
+
+  <div class="fotos">
+    <img src="img1.jpg" alt="Foto íntima 1">
+    <img src="img2.jpg" alt="Foto íntima 2">
+  </div>
+
+  <div class="pregunta-caliente">
+    <span>🔥😈</span>
+    En una escala del 1 al 10,<br>
+    ¿qué tan caliente te sientes hoy?
+  </div>
+
+  <div class="opciones">
+    <button>1 – 3 · Algo suave</button>
+    <button>4 – 6 · Curioso/a</button>
+    <button>7 – 9 · Bastante encendido/a</button>
+    <button>10 · Todo contigo</button>
+  </div>
+
+  <div class="btn-atras" onclick="history.back()">← Volver</div>
+
+</div>
+
+</body>
+</html>
 
