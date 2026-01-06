@@ -123,6 +123,27 @@ h1 {
   h1 { font-size: 22px; }
   .menu button { font-size: 14px; }
 }
+
+.btn-volver-inicio {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255,255,255,0.35);
+  color: #4b2e83;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-volver-inicio:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.5);
+}
+
 </style>
 </head>
 
@@ -133,6 +154,8 @@ h1 {
   <!-- MENÚ PRINCIPAL -->
   <div id="menuPrincipal">
     <h1>Estoy aquí contigo 🤍<br>¿Qué te hace sentir así?</h1>
+    <button class="btn-volver-inicio" onclick="history.back()">← Volver</button>
+
     <div class="menu">
       <button onclick="seleccionar('personal')">💭 Personal</button>
       <button onclick="seleccionar('relacion')">💔 Relación</button>
