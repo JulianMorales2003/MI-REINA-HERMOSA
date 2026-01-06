@@ -107,6 +107,25 @@ h1 {
   h1 { font-size: 22px; }
   .menu button { font-size: 14px; }
 }
+
+.btn-atras-triste {
+  margin-top: 25px;
+  padding: 10px 18px;
+  border-radius: 18px;
+  border: none;
+  background: rgba(255,255,255,0.25);
+  color: #5e3b76;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-atras-triste:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.35);
+}
+
 </style>
 </head>
 
@@ -117,6 +136,10 @@ h1 {
   <!-- MENÚ PRINCIPAL -->
   <div id="menuPrincipal">
     <h1>Estoy aquí contigo 🤍<br>¿Qué te hace sentir así?</h1>
+    <button class="btn-atras-triste" onclick="volverSeleccion()">
+      ← Volver
+    </button>
+
     <div class="menu">
       <button onclick="seleccionar('personal')">💭 Personal</button>
       <button onclick="seleccionar('relacion')">💔 Relación</button>
@@ -218,6 +241,14 @@ function volver() {
   document.getElementById('frase').style.display = 'none';
   document.getElementById('botonesExtra').style.display = 'none';
 }
+
+<script>
+function volverSeleccion() {
+  document.getElementById("seleccion").style.display = "block";
+  document.getElementById("contenido").style.display = "none";
+}
+</script>
+
 </script>
 
 </body>
