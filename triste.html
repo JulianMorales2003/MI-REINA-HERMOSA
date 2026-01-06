@@ -61,6 +61,13 @@ h1 {
   max-width: 500px;
 }
 
+.titulo-seccion {
+  font-size: 26px;
+  font-weight: 600;
+  color: #4b2e83;
+  margin-bottom: 10px;
+}
+
 .pregunta {
   font-size: 18px;
   color: #4b2e83;
@@ -166,6 +173,9 @@ h1 {
 
   <!-- APOYO -->
   <div id="apoyo" class="apoyo">
+    
+    <div id="tituloSeccion" class="titulo-seccion"></div>
+
     <div class="pregunta">¿Quieres que te dé una frase de apoyo?</div>
 
     <button class="btn-si-frase" onclick="mostrarFrase()">💜 Sí, dame una</button>
@@ -229,9 +239,21 @@ function seleccionar(cat) {
   categoriaActual = cat;
   menuPrincipal.style.display = 'none';
   apoyo.style.display = 'flex';
+
+  // Título visible de la sección
+  const titulos = {
+    personal: "Personal",
+    relacion: "Relación amorosa",
+    metas: "Tus metas",
+    cansancio: "Cansancio mental y fisico"
+  };
+
+  document.getElementById("tituloSeccion").textContent = titulos[cat];
+
   audio.src = musica[cat];
   audio.play();
 }
+
 
 function mostrarFrase() {
   const lista = frases[categoriaActual];
